@@ -1,0 +1,810 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Introduction to Propositional Logic</title>
+
+    <!-- BOOTSTRAP 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+    body {
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+        overflow: hidden;
+    }
+
+    /* SLIDES */
+    .slide {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: translateX(40px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+        pointer-events: none;
+    }
+
+    .slide.active {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+    }
+
+    /* SLIDE BACKGROUNDS */
+    #slide1  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide2  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide3  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide4  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide5  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide6  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide7  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide8  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide9  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide10 { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide11  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide12  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide13  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide14  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide15  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide16  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide17  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide18  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide19  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide20 { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide21  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide22  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide23  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide24  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide25  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide26  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide27  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    #slide28  { background: url("./Startup.jpg")  center/cover no-repeat; }
+    
+
+    /* CONTENT OVERLAY (PPT STYLE) */
+    .container {
+        background: rgba(214, 219, 223, 0.88);
+        backdrop-filter: blur(6px);
+        border-radius: 20px;
+        padding: 70px 80px;
+        max-width: 1200px;
+    }
+
+    /* TEXT STYLES */
+    .hero-title {
+        font-size: 4.5rem;
+        font-weight: 700;
+        color: #000;
+    }
+
+    .hero-subtitle {
+        font-size: 1.8rem;
+        margin-top: 15px;
+    }
+
+    .section-title {
+        font-size: 3.2rem;
+        font-weight: 700;
+        margin-bottom: 35px;
+    }
+
+    .section-text {
+        font-size: 1.7rem;
+        max-width: 950px;
+    }
+
+    .outcomes-list {
+        padding-left: 25px;
+    }
+
+    .outcomes-list li {
+        font-size: 1.6rem;
+        margin-bottom: 18px;
+        line-height: 1.5;
+    }
+
+    .dark-blue,
+    .answer-dark-blue {
+        color: #0b2f6b;
+        font-weight: 600;
+    }
+
+    /* NAV BUTTONS */
+    .nav-btn {
+        background: none;
+        border: none;
+        font-size: 3rem;
+        cursor: pointer;
+        color: #666;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-left  { left: 40px; }
+    .nav-right { right: 40px; }
+
+    .nav-btn:hover {
+        color: #000;
+        transform: translateY(-50%) scale(1.2);
+    }
+
+    .nav-btn:active {
+        color: #0b2f6b;
+    }
+
+    h1{
+        color:#EF4444
+    }
+    h2{
+        color:#EF4444
+    }
+    strong{
+        color:#EF4444
+    }
+
+    </style>
+    </head>
+
+    <body>
+
+    <!-- SLIDE 1 (ONLY > BUTTON) -->
+    <section class="slide active" id="slide1">
+        <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+        <div class="container text-center">
+            <h1 class="hero-title">INTRODUCTION TO<br>SET THEORY</h1>
+            <p class="hero-subtitle">Lesson 4: Discrete Structures</p>
+        </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide" id="slide2">
+        <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+        <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+        <div class="container">
+            <h2 class="section-title">Learning Objectives:</h2>
+            <ul class="outcomes-list">
+                <li>Explain the concepts of set and elements.</li>
+                <li>Perform basic set operations such as union, intersection,  difference, and complement.</li>
+                <li>Apply set operations to solve complex mathematical problems.</li>
+                <li>Analyze Venn diagrams to understand relationships between sets and calculate cardinality.</li>
+                <li>Evaluate the effectiveness of different operations in problem-solving scenarios.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide" id="slide3">
+        <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+        <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+        <div class="container text-center">
+            <h2 class="section-title" >WHAT IS A SET?</h2>
+            <p class="section-text mx-auto">
+                A <strong>set</strong> is a mathematical representation of a collection of distinct objects
+                that are grouped in a particular manner.
+            </p>
+          <div class="text-center mt-5">
+            <div style="font-size: 5rem; font-weight: bold;">
+                { 
+                <span style="margin: 0 15px;">🍒</span>
+                <span style="margin: 0 15px;">🍌</span>
+                <span style="margin: 0 15px;">🍎</span>
+                <span style="margin: 0 15px;">🥝</span>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide" id="slide4">
+        <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+        <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+        <div class="container">
+            <h2 class="section-title text-center">WHAT IS A SET?</h2>
+            <p class="section-text mx-auto text-center">
+                Conventionally, a set is represented by uppercased letters to distinguish
+                it from elements which are denoted by lowercased letters.
+            </p>
+            <h2 class="section-title mt-5">Examples of Set</h2>
+            <ul class="outcomes-list">
+                <li>A = { 1, 3, 5, 7, 9 }</li>
+                <li>B = { a, e, i, o, u }</li>
+                <li>C = { Honda, Toyota, Kia, Nissan }</li>
+                <li>D = { I, V, X, C, L, M, D }</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SLIDE 5 - ELEMENTS -->
+    <section class="slide" id="slide5">
+        <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+        <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+        <div class="container">
+            <h2 class="section-title">WHAT IS AN ELEMENT?</h2>
+            <p class="section-text">
+                An element refers to the individual object that composes a set.
+            </p>
+            <div class="text-center mt-5">
+                <div style="font-size: 4rem; font-weight: bold; display: inline-block;">
+                    { 
+                    <span style="margin: 0 20px;">✂️</span>
+                    <span style="margin: 0 20px;">📝</span>
+                    <span style="margin: 0 20px;">🖍️</span>
+                    <span style="margin: 0 20px;">📄</span>
+                    }
+                </div>
+                <div class="d-flex justify-content-center mt-4" style="gap: 60px; font-size: 1.5rem;">
+                    <div>element</div>
+                    <div>element</div>
+                    <div>element</div>
+                    <div>element</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 6 -->
+    <section class="slide" id="slide6">
+        <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+        <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+        <div class="container">
+            <h2 class="section-title text-center">WHAT IS AN ELEMENT?</h2>
+            <p class="section-text mx-auto text-center">
+                Generally, the elements of a set are written 
+                inside a pair of curly braces {} and are separated by commas.
+            </p>
+            <h2 class="section-title mt-5">Elements Contained in a Set:</h2>
+            <ul class="outcomes-list">
+                <li>A = { 1, 3, 5, 7, 9 }</li>
+                <li>B = { a, e, i, o, u }</li>
+                <li>C = { Honda, Toyota, Kia, Nissan }</li>
+                <li>D = { I, V, X, C, L, M, D }</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SLIDE 7 -->
+    <section class="slide" id="slide7">
+        <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+        <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+        <div class="container">
+            <h2 class="section-title">SETS AND ELEMENTS</h2>
+            <p class="section-text text-center fs-1">
+                <span class="dark-blue">A = { 1, 3, 5, 7, 9 }</span>
+            </p>
+            <p class="section-text">
+                This notation can be read as 
+                <strong>"A containing the elements 1, 3, 5, 7, and 9".</strong>
+            </p>
+            <p class="section-text text-center fs-1">
+                <span class="dark-blue">1 ∈ A</span>
+            </p>
+            <p class="section-text">
+                This notation can be read as <strong>"1 is an element of A"</strong> 
+                which means that 1 is one of the components of set A.
+            </p>
+        </div>
+    </section>
+
+        <!-- SLIDE 8 -->
+    <section class="slide" id="slide8">
+        <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+        <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+        <div class="container">
+            <h2 class="section-title">SETS AND ELEMENTS</h2>
+            <p class="section-text text-center fs-1">
+                <span class="dark-blue">Z = { 10, 20, 30, 40, 50}</span>
+            </p>
+            <p class="section-text">
+                This notation can be read as 
+                <strong>“Z containing the elements 10, 20, 30, 40, and 50” .</strong>
+            </p>
+            <p class="section-text text-center fs-1">
+                <span class="dark-blue">10, 30, 40 ∈ Z</span>
+            </p>
+            <p class="section-text">
+                This notation can be read as <strong>“10, 30, and 40  are element of Z”</strong> 
+                which means that 10, 30, 40 are some of the components of set Z.
+            </p>
+        </div>
+    </section>
+
+          <!-- SLIDE 9 -->
+    <section class="slide" id="slide9">
+        <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+        <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+        <div class="container">
+            <h2 class="section-title">SETS AND ELEMENTS</h2>
+            <p class="section-text text-center fs-1">
+                <span class="dark-blue">B = { a, e, i, o, u}</span>
+            </p>
+            <p class="section-text">
+                This notation can be read as 
+                <strong>“B containing the elements a, e, i, o, and u”.</strong>
+            </p>
+            <p class="section-text text-center fs-1">
+                <span class="dark-blue"> m ∉ B </span>
+            </p>
+            <p class="section-text">
+                This notation can be read as <strong>“m is not an element of B”</strong> 
+                which means that m is not one of the components of set B.
+        </div>
+    </section>
+
+    <!-- SLIDE 10 -->
+<section class="slide" id="slide10">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title text-center">PRACTICE TEST:</h2>
+        <p class="section-text text-center mb-4">
+            If a set <strong>A = {3, 6, 9, 10, 13, 18}</strong><br>
+            State whether the following statements are 'true' or 'false':
+        </p>
+    <ul class="outcomes-list" style="list-style-type: none;">
+    <li><span class="dark-blue">1.</span> 13, 18 ∈ A</li>
+    <li><span class="dark-blue">2.</span> 7 ∈ A</li>
+    <li><span class="dark-blue">3.</span> 12 ∉ A</li>
+    <li><span class="dark-blue">4.</span> 13 ∈ A</li>
+    <li><span class="dark-blue">5.</span> 9, 12 ∈ A</li>
+    <li><span class="dark-blue">6.</span> 10, 13, 14 ∈ A</li>
+    <li><span class="dark-blue">7.</span> 3, 7, 9 ∈ A</li>
+    <li><span class="dark-blue">8.</span> 8 ∉ A</li>
+</ul>
+    </div>
+</section>
+
+    <!-- SLIDE 11 -->
+    <section class="slide" id="slide11">
+        <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+        <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+        <div class="container">
+            <h2 class="section-title">CARDINALITY</h2>
+            <p class="section-text">
+                The <strong> cardinality</strong>
+                of a set is a measure of a set's size, which refers
+                 to the number of elements in the set. 
+            </p>
+            <p class="section-text text-center fs-1">
+                <span class="dark-blue"> B = { a, e, i, o, u} </span>
+            </p>
+            <p class="section-text">
+                For instance, the set above has a cardinality of 5,<strong> |B| = 5</strong> 
+               ,for there are five elements that are inside the set.
+    </section>
+
+     <!-- SLIDE 12 -->
+    <section class="slide" id="slide12">
+        <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+        <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+        <div class="container">
+            <h2 class="section-title">CARDINALITY</h2>
+            <p class="section-text">
+                Although cardinality refers to the number of elements in a set, it
+                <strong>does not count separately the elements of the set that have the same value</strong>.
+            </p>
+            <p class="section-text text-center fs-1">
+                <span class="dark-blue">C = { 1, 3, 5, 5, 3, 1}</span>
+            </p>
+            <p class="section-text">
+                Set C still has a cardinality of 3, <strong>|D| = 3</strong> 
+               despite having 6 elements since cardinality does not account for 
+               individual values of repeated numbers.
+    </section>
+
+        <!-- SLIDE 13 -->
+<section class="slide" id="slide13">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title text-center">PRACTICE TEST:</h2>
+        <p class="section-text text-center mb-4">
+            Determine the cardinality of the following sets:
+        </p>
+    <ul class="outcomes-list" style="list-style-type: none;">
+    <li><span class="dark-blue">1.</span> A = { 1, 2, 3, 4, 5 }</li>
+    <li><span class="dark-blue">2.</span> B = { 10, 15, 20, 25, 25, 30, 35 }</li>
+    <li><span class="dark-blue">3.</span> C = { red, yellow, blue }</li>
+    <li><span class="dark-blue">4.</span> D = { Greg, Martha, Tim, Ted, Greg, Ted }</li>
+    <li><span class="dark-blue">5.</span> E = { x, x, w, w, z, z, x, h, k, l, z }</li>
+</ul>
+    </div>
+</section>
+
+<!-- SLIDE 14 -->
+<section class="slide" id="slide14">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container text-center">
+        <h1 class="hero-title">OPERATIONS ON SETS</h1>
+        <p class="hero-subtitle">Union, Intersection, Difference, and Complement</p>
+    </div>
+</section>
+
+<!-- SLIDE 15 -->
+<section class="slide" id="slide15">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title">OPERATIONS ON SETS</h2>
+        <p class="section-text text-center mb-4">
+            Set operations allow us to manipulate and compare sets,
+            revealing various relationships between them. In a set theory, 
+            there are three major types of operations performed on sets, such as:
+        </p>
+        <ul class="outcomes-list" style="list-style-type: none;">
+            <li><span class="dark-blue">■</span> Union of sets (∪)</li>
+            <li><span class="dark-blue">■</span> Intersection of sets (∩)</li>
+            <li><span class="dark-blue">■</span> Difference of sets ( – )</li>
+            <li><span class="dark-blue">■</span> Complement (C)</li>
+        </ul>
+    </div>
+</section>
+
+<!-- SLIDE 16 - UNION OF SETS -->
+<section class="slide" id="slide16">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title">UNION OF SETS</h2>
+        <p class="section-text">
+            The <span class="dark-blue">Union of Sets</span> is an operation that combines
+            all the elements of both sets, removing its duplicates.
+        </p>
+        <div class="text-center mt-4">
+            <svg width="400" height="300" viewBox="0 0 400 300">
+                <!-- Background rectangle -->
+                <rect x="10" y="10" width="380" height="280" fill="none" stroke="#333" stroke-width="2"/>
+                <text x="20" y="30" font-size="18" font-weight="bold">U</text>
+                
+                <!-- Circle A (pink) -->
+                <circle cx="150" cy="150" r="80" fill="#FFC0CB" opacity="0.7" stroke="#FF69B4" stroke-width="2"/>
+                <text x="110" y="80" font-size="16" fill="#FF0000" font-weight="bold">A</text>
+                
+                <!-- Circle B (blue) -->
+                <circle cx="250" cy="150" r="80" fill="#ADD8E6" opacity="0.7" stroke="#4169E1" stroke-width="2"/>
+                <text x="280" y="80" font-size="16" fill="#0000FF" font-weight="bold">B</text>
+                
+                <!-- Label at bottom -->
+                <text x="200" y="260" font-size="18" fill="#FF0000" text-anchor="middle" font-weight="bold">A ∪ B</text>
+            </svg>
+        </div>
+    </div>
+</section>
+
+
+<!-- SLIDE 17 - UNION EXAMPLES -->
+<section class="slide" id="slide17">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title">UNION OF SETS</h2>
+        
+        <h3 style="color: #EF4444; font-size: 2rem; font-weight: 700; margin-top: 30px;">EXAMPLE 1:</h3>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+            <span style="color: #3B82F6; font-weight: 600;">A = { 1, 3, 5, 7}</span> 
+            <span style="color: #10B981; font-weight: 600;">B = { 2, 4, 6, 8 }</span>
+        </p>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+            A ∪ B = { <span style="color: #06B6D4; font-weight: 600;">1, 3, 5, 7,</span><span style="color: #10B981;  font-weight: 600;"> 2, 4, 6, 8</span> }
+        </p>
+    
+        <h3 style="color: #EF4444; font-size: 2rem; font-weight: 700; margin-top: 40px;">EXAMPLE 2:</h3>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+            <span style="color: #3B82F6; font-weight: 600;">A = { r, a, i, n, e }</span>    
+            <span style="color: #10B981; font-weight: 600;">B = { r, a, v, e, n}</span>
+        </p>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+            A ∪ B = { </strong><span style="color: #06B6D4; font-weight: 600;">r, a, i, n, e,</span><span style="color: #10B981;  font-weight: 600;"> v</span> }
+        </p>
+    </div>
+</section>
+
+<!-- SLIDE 18 -->
+<section class="slide" id="slide18">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title">PRACTICE TEST</h2>
+        <p class="section-text text-center mb-4">
+            If A = {2, 3, 4, 5}, B = {4, 5, 6, 7}, C = {6, 7, 8, 9}     
+            D = {8, 9, 10, 11}, find:
+        </p>
+        <ul class="outcomes-list" style="list-style-type: none;">
+            <li><span class="dark-blue">■</span> A ∪ B</li>
+            <li><span class="dark-blue">■</span> A ∪ C</li>
+            <li><span class="dark-blue">■</span> B ∪ C</li>
+            <li><span class="dark-blue">■</span> B ∪ D</li>
+            <li><span class="dark-blue">■</span> (A ∪ B) ∪ C</li>
+            <li><span class="dark-blue">■</span> (B ∪ C) ∪ D</li>
+            <li><span class="dark-blue">■</span> (A ∪ B) ∪ (C ∪ D)</li>
+        </ul>
+    </div>
+</section>
+
+<!-- SLIDE 19 - INTERSECTION SETS -->
+<section class="slide" id="slide19">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title">INTERSECTION OF SETS</h2>
+        <p class="section-text">
+            The <span class="dark-blue">Intersection of Sets</span> is an operation that lists down
+            all the elements that are present in both sets.
+        </p>
+        <div class="text-center mt-4">
+            <svg width="400" height="300" viewBox="0 0 400 300">
+                <!-- Background rectangle -->
+                <rect x="10" y="10" width="380" height="280" fill="none" stroke="#333" stroke-width="2"/>
+                <text x="20" y="30" font-size="18" font-weight="bold">U</text>
+                
+                <!-- Circle A (pink) -->
+                <circle cx="150" cy="150" r="80" fill="#FFC0CB" opacity="0.7" stroke="#FF69B4" stroke-width="2"/>
+                <text x="110" y="80" font-size="16" fill="#FF0000" font-weight="bold">A</text>
+                
+                <!-- Circle B (blue) -->
+                <circle cx="250" cy="150" r="80" fill="#ADD8E6" opacity="0.7" stroke="#4169E1" stroke-width="2"/>
+                <text x="280" y="80" font-size="16" fill="#0000FF" font-weight="bold">B</text>
+                
+                <!-- Label at bottom -->
+                <text x="200" y="260" font-size="18" fill="#FF0000" text-anchor="middle" font-weight="bold">A ∩ B</text>
+            </svg>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 20 - INTERSECTION EXAMPLES -->
+<section class="slide" id="slide20">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title">INTERSECTION OF SETS</h2>
+        
+        <h3 style="color: #EF4444; font-size: 2rem; font-weight: 700; margin-top: 30px;">EXAMPLE 1:</h3>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+            <span style="color: #3B82F6; font-weight: 600;">A = { 1, 2, 3, 4}</span> 
+            <span style="color: #10B981; font-weight: 600;">B = { 2, 4, 6, 8 }</span>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+             <span style="color: #EF4444; font-weight: 600;">A ∩ B = { 2, 4}</span>
+        </p>
+        <h3 style="color: #EF4444; font-size: 2rem; font-weight: 700; margin-top: 40px;">EXAMPLE 2:</h3>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+            <span style="color: #3B82F6; font-weight: 600;">A = { r, a, i, n, e }</span>    
+            <span style="color: #10B981; font-weight: 600;">B = { r, a, v, e, n}</span>
+        </p>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+             <span style="color: #EF4444; font-weight: 600;">A ∩ B = {  r, a, e, n}</span>
+        </p>
+    </div>
+</section>
+
+<!-- SLIDE 21 -->
+<section class="slide" id="slide21">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title">PRACTICE TEST</h2>
+        <p class="section-text text-center mb-4">
+            If A = {4, 6, 8, 10, 12} B = {8, 10, 12, 14} C = {12, 14, 16} D = {16, 18}, find:
+        </p>
+        <ul class="outcomes-list" style="list-style-type: none;">
+            <li><span class="dark-blue">■</span> A ∩ B</li>
+            <li><span class="dark-blue">■</span> B ∩ C</li>
+            <li><span class="dark-blue">■</span> A ∩ C</li>
+            <li><span class="dark-blue">■</span> B ∩ D</li>
+            <li><span class="dark-blue">■</span> C ∩ B</li>
+            <li><span class="dark-blue">■</span> (A ∩ C) ∩ D</li>
+            <li><span class="dark-blue">■</span> (A ∩ B) ∪ C</li>
+        </ul>
+    </div>
+</section>
+
+
+<!-- SLIDE 22 - DIFFERENCE SETS -->
+<section class="slide" id="slide22">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title">DIFFERENCE OF SETS</h2>
+        <p class="section-text">
+            The <span class="dark-blue">DIFFERENCE of Sets</span> is an operation that lists down
+            all the elements that are present in the one set but not in the other set.
+        </p>
+        <div class="text-center mt-4">
+            <svg width="400" height="300" viewBox="0 0 400 300">
+                <!-- Background rectangle -->
+                <rect x="10" y="10" width="380" height="280" fill="none" stroke="#333" stroke-width="2"/>
+                <text x="20" y="30" font-size="18" font-weight="bold">U</text>
+                
+                <!-- Circle A (pink) -->
+                <circle cx="150" cy="150" r="80" fill="#FFC0CB" opacity="0.7" stroke="#FF69B4" stroke-width="2"/>
+                <text x="110" y="80" font-size="16" fill="#FF0000" font-weight="bold">A</text>
+                
+                <!-- Circle B (blue) -->
+                <circle cx="250" cy="150" r="80" fill="#ADD8E6" opacity="0.7" stroke="#4169E1" stroke-width="2"/>
+                <text x="280" y="80" font-size="16" fill="#0000FF" font-weight="bold">B</text>
+                
+                <!-- Label at bottom -->
+                <text x="200" y="260" font-size="18" fill="#FF0000" text-anchor="middle" font-weight="bold">A - B</text>
+            </svg>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 23 - DIFFERENCE EXAMPLES -->
+<section class="slide" id="slide23">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title">DIFFERENCE OF SETS</h2>
+        
+        <h3 style="color: #EF4444; font-size: 2rem; font-weight: 700; margin-top: 30px;">EXAMPLE 1:</h3>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+            <span style="color: #3B82F6; font-weight: 600;">A = { 1, 2, 3, 4}</span> 
+            <span style="color: #10B981; font-weight: 600;">B = { 2, 4, 6, 8 }</span>
+        </p>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+            <strong>A - B = { <span style="color: #06B6D4; font-weight: 600;"> 1, 3,</span></strong><strong> } </strong>
+        </p>
+    
+        <h3 style="color: #EF4444; font-size: 2rem; font-weight: 700; margin-top: 40px;">EXAMPLE 2:</h3>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+            <span style="color: #3B82F6; font-weight: 600;">A = { r, a, i, n, e }</span>    
+            <span style="color: #10B981; font-weight: 600;">B = { r, a, v, e, n}</span>
+        </p>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+            <strong>A - B = { <span style="color: #06B6D4; font-weight: 600;"> i </span></strong><strong> } </strong>
+        </p>
+    </div>
+</section>
+
+<!-- SLIDE 24 -->
+<section class="slide" id="slide24">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title">PRACTICE TEST</h2>
+        <p class="section-text text-center mb-4">
+            If A = {4, 7, 10, 13, 16, 19, 22} B = {5, 9, 13, 17, 20} 
+            C = {3, 5, 7, 9, 11, 13, 15, 17} D = {6, 11, 16, 21} 
+            then find:
+
+        </p>
+        <ul class="outcomes-list" style="list-style-type: none;">
+            <li><span class="dark-blue">■</span> A - C</li>
+            <li><span class="dark-blue">■</span> D - A</li>
+            <li><span class="dark-blue">■</span> D - B</li>
+            <li><span class="dark-blue">■</span> A - D</li>
+            <li><span class="dark-blue">■</span> B - C</li>
+            <li><span class="dark-blue">■</span> C - D</li>
+            <li><span class="dark-blue">■</span> B - D</li>
+        </ul>
+    </div>
+</section>
+
+
+<!-- SLIDE 25 - COMPLEMENT OF SETS -->
+<section class="slide" id="slide25">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title">COMPLEMENT OF SETS</h2>
+        <p class="section-text">
+            The <span class="dark-blue">Complement of Sets</span> is an operation that
+            determine elements that are not in the given set but belong to the universal set.
+        </p>
+        <div class="text-center mt-5">
+            <svg width="350" height="300" viewBox="0 0 350 300">
+                <!-- Universal set rectangle (pink background) -->
+                <rect x="50" y="40" width="250" height="220" fill="#FFC0CB" stroke="#FF1493" stroke-width="3"/>
+                <text x="65" y="65" font-size="20" font-weight="bold">U</text>
+                
+                <!-- Circle A (white) -->
+                <circle cx="175" cy="150" r="70" fill="white" stroke="#FF1493" stroke-width="2"/>
+                <text x="165" y="115" font-size="18" fill="#FF0000" font-weight="bold">A</text>
+                
+                <!-- A' label (complement area) -->
+                <text x="240" y="230" font-size="18" fill="#FF0000" font-weight="bold">A'</text>
+            </svg>
+        </div>
+    </div>
+</section>
+
+
+<!-- SLIDE 26 - COMPLEMENTS OF SETS -->
+<section class="slide" id="slide26">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title">COMPLEMENT OF SETS</h2>
+        
+        <h3 style="color: #EF4444; font-size: 2rem; font-weight: 700; margin-top: 30px;">EXAMPLE 1:</h3>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+            <span style="color: #3B82F6; font-weight: 600;">U = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}</span> 
+            <span style="color: #10B981; font-weight: 600;">A = { 2, 4, 6, 8 }</span>
+        </p>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+            <strong>A' = { <span style="color: #06B6D4; font-weight: 600;"> 1, 3, 5, 7, 9, 10</span></strong><strong> } </strong>
+        </p>
+    
+        <h3 style="color: #EF4444; font-size: 2rem; font-weight: 700; margin-top: 40px;">EXAMPLE 2:</h3>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+            <span style="color: #3B82F6; font-weight: 600;">U = { m, a, r, q, u, i, n }</span>    
+            <span style="color: #10B981; font-weight: 600;">A = { i, n, a}</span>
+        </p>
+        <p class="section-text" style="font-size: 2rem; margin: 20px 0;">
+            <strong>A' = { <span style="color: #06B6D4; font-weight: 600;"> m, r, q, u </span></strong><strong> } </strong>
+        </p>
+    </div>
+</section>
+
+<!-- SLIDE 27 -->
+<section class="slide" id="slide27">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <button class="nav-btn nav-right" onclick="nextSlide()">&gt;</button>
+    <div class="container">
+        <h2 class="section-title">PRACTICE TEST</h2>
+        <p class="section-text text-center mb-4">
+            If U = {1,2,3,4,5,6,7,8,9,10},   A = {1,2,3,4},
+            B = {3, 5, 7, 9, 10}, C = {2,4,6,8,10}, D = {1,3,8,7}
+            then find:
+        </p>
+        <ul class="outcomes-list" style="list-style-type: none;">
+            <li><span class="dark-blue">■</span> A’</li>
+            <li><span class="dark-blue">■</span> B’</li>
+            <li><span class="dark-blue">■</span> C’</li>
+            <li><span class="dark-blue">■</span> D’</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ENDING SLIDE -->
+<section class="slide" id="slide28">
+    <button class="nav-btn nav-left" onclick="prevSlide()">&lt;</button>
+    <div class="container text-center">
+        <div style="font-size: 8rem; margin-bottom: 40px;">✓</div>
+        <h1 class="hero-title">END OF LESSON</h1>
+        <p class="hero-subtitle" style="margin-top: 40px;">
+            Introduction to Set Theory
+        </p>
+        <p class="section-text mt-4" style="font-size: 1.5rem;">
+                 Lesson 4: Discrete Structures
+        </p>
+    </div>
+</section>
+
+    <script>
+    let currentSlide = 1;
+    const totalSlides = 28;
+
+    function showSlide(n) {
+        document.querySelectorAll('.slide').forEach(slide => slide.classList.remove('active'));
+        document.getElementById('slide' + n).classList.add('active');
+    }
+
+    function nextSlide() {
+        if (currentSlide < totalSlides) {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 1) {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+    }
+    </script>
+
+    </body>
+    </html>
